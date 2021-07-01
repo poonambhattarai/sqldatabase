@@ -629,56 +629,57 @@ VALUES
 ('SS HC SMnMng 320X24 Rs270', 'SS HC SMnMng 320X24 Rs270', 193.158, 270, 24, 320, 'CD', 'SunShine', 'Hair Care', 13, 'Y', 'manis', '2017-08-08 00:00:00', 'manis', '2017-08-08 00:00:00'),
 ('SS HC HFS 7_5X384', 'SS HC HFS 7_5X384', 2.18596, 3, 384, 7.5, 'CD', 'SunShine', 'Hair Care', 13, 'Y', 'manis', '2017-08-08 00:00:00', 'manis', '2017-08-08 00:00:00');
 
-DML Queries
+-- DML Queries
 
-Select all products with brand “Cacti Plus”
+-- Select all products with brand Â“Cacti PlusÂ”
 select * from dbo.product where brand ='Cacti Plus'
 
-Count of total products with product category=”Skin Care”
+-- Count of total products with product category=Â”Skin CareÂ”
 select count(*) from dbo.product where category ='Skin Care'
 
-Count of total products with MRP more than 100
+-- Count of total products with MRP more than 100
 select count(*) from dbo.product where mrp > 100
 
-Count of total products with product category =”Skin Care” and MRP more than 100
+-- Count of total products with product category =Â”Skin CareÂ” and MRP more than 100
 select count(*) from dbo.product where category ='Skin Care' and  mrp > 100
 
-Brandwise product count
+-- Brandwise product count
 select count(*) from dbo.product group by brand
 
-Brandwise as well as Active/Inactive Status wise product count
+-- Brandwise as well as Active/Inactive Status wise product count
 select count(*) from dbo.product where active IN('Y','N') group by brand 
 
-Display all columns with Product category in Skin Care or Hair Care
+-- Display all columns with Product category in Skin Care or Hair Care
 select * from dbo.product where category = 'Skin Care' or category = 'Hair Care'
 
-Display all columns with Product category in Skin Care or Hair Care, and MRP more than 100
+-- Display all columns with Product category in Skin Care or Hair Care, and MRP more than 100
 select * from dbo.product where category = 'Skin Care' or category = 'Hair Care' and mrp > 100
 
-Display   all   columns   with   Product   category=”Skin   Care”   and
-Brand=”Pondy”, and MRP more than 100
+-- Display   all   columns   with   Product   category=Â”Skin   CareÂ”   and
+-- Brand=Â”PondyÂ”, and MRP more than 100
 select * from dbo.product where category = 'Skin Care' and brand = 'Pondy' and mrp >100
 
-Display   all   columns   with   Product   category   =”Skin   Care”   or
-Brand=”Pondy”, and more than 100
+-- Display   all   columns   with   Product   category   =Â”Skin   CareÂ”   or
+-- Brand=Â”PondyÂ”, and more than 100
 select * from dbo.product where category = 'Skin Care' or brand = 'Pondy' and mrp >100
 
-Display all product names only with names starting from letter P
+-- Display all product names only with names starting from letter P
 select product_name from dbo.product where product_name like 'P%'
 
-Display  all product  names only with names Having letters “Bar”  in Between
+-- Display  all product  names only with names Having letters Â“BarÂ”  in Between
 select product_name from dbo.product where product_name like '%Bar%'
 
-Sales of those products which have been sold in more than two quantity in a bill
+-- Sales of those products which have been sold in more than two quantity in a bill
 select*from dbo.sales where qty>2
 
-Sales of those products which have been sold in more than two quantity throughout the bill
+-- Sales of those products which have been sold in more than two quantity throughout the bill
 select product_id,sum(qty)from dbo.sales group by product_id having sum(qty)>2 
 
-Create a new table with columns username and birthday, and dump data from dates file. Convert it to .csv format if required.
+-- Create a new table with columns username and birthday, and dump data from dates file. Convert it to .csv format if required.
 Create table employee(
 username varchar(30),
 birthday date);
+
 BULK INSERT dbo.employee
 FROM 'C:\Users\poonam\Documents\date.csv'
 WITH (
@@ -687,16 +688,11 @@ WITH (
   ROWTERMINATOR ='\n'
 )
 
-Research on Date Function Queries from the slide
-After populating the data, find no of people sharing
+-- Research on Date Function Queries from the slide
+-- After populating the data, find no of people sharing
 select * from dbo.employee
-Birth date
+-- Birth date
 select count(username) from dbo.employee where birthday IN( select birthday from dbo.employee group by birthday having count(birthday)> 1)
 
 
-Birth month
-
-Weekday
-Find the current age of all people
-select 
 
